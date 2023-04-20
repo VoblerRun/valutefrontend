@@ -2,15 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import InputForm from "./InputForm";
+import {BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Login";
+import Home from "./Home";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <Login></Login>
+      <BrowserRouter>
+          <Routes>
+              <Route  path ="/" Component={Login} />
+              <Route path ="/home" Component={Home} />
+          </Routes>
+      </BrowserRouter>
   </React.StrictMode>
 );
 

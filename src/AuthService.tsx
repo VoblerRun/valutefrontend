@@ -1,9 +1,12 @@
 import axios from "axios";
-
+import { Cookies } from 'react-cookie';
 const API_URL = "http://localhost:8080/api/authenticate";
 
+
 class AuthService {
-    login(email: string, password: string) {
+    
+    
+   login(email: string, password: string) {
         return axios
             .post(API_URL, {
                 email,
@@ -13,9 +16,15 @@ class AuthService {
                 // if (response.data.accessToken) {
                 //     localStorage.setItem("user", JSON.stringify(response.data));
                 // }
-                console.log('response', response);
-                return response.data;
+                // console.log('response', response.data.token);
+
+                const cookies = new Cookies();
+                console.log('response.data.token' , response.data.token);
+                cookies.set('Bearer Token', response.data.token, {httpOnly: true, secure: true});
+
+                console.log('cookir', cookies.get('token'));
             });
+
     }
 
     logout() {
